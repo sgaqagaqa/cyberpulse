@@ -1,0 +1,60 @@
+name: Build feed
+
+on:
+  schedule:
+    - cron: "11 * * * *"   # every hour at :11
+  workflow_dispatch: {}      # lets you run it manually from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-feed
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - run: pip install -r backend/requirements.txt
+
+      # Pull the previous feed/history from the `data` branch (first run: nothing there yet)
+      - name: Load previous data
+        run: |
+          git clone --quiet --depth 1 --branch data \
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" out 2>/dev/null \
+            || mkdir out
+
+      - name: Build feed
+        env:
+          OUT_DIR: out
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}   # optional: real push alerts via the free ntfy app
+        run: python backend/build_feed.py
+
+      # Put the web app next to the feed so GitHub Pages serves both from one place
+      - name: Add web app
+        run: |
+          cp -R web/. out/
+          touch out/.nojekyll
+
+      # Force-push a single commit so the repo never grows with hourly history
+      - name: Publish to data branch
+        run: |
+          cd out
+          rm -rf .git
+          git init -q -b data
+          git config user.name "cyberpulse-bot"
+          git config user.email "cyberpulse-bot@users.noreply.github.com"
+          git add -A
+          git commit -q -m "feed $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -q --force \
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" data

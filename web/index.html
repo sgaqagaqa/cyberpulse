@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CyberPulse</title>
+  <meta name="description" content="Personal IT, cybersecurity and South Africa news feed.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="CyberPulse">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0b0f14">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <h1>CyberPulse</h1>
+      <span id="critBadge" class="badge" hidden></span>
+    </div>
+    <div class="right">
+      <span id="status" class="status"></span>
+      <button id="refresh" class="icon-btn" aria-label="Refresh" title="Refresh">&#8635;</button>
+    </div>
+  </header>
+
+  <nav id="tabs" class="tabs" role="tablist">
+    <button role="tab" data-tab="feed" class="active">Feed</button>
+    <button role="tab" data-tab="sa">South Africa</button>
+    <button role="tab" data-tab="saved">Saved</button>
+  </nav>
+
+  <section id="controls" class="controls">
+    <div id="windows" class="segmented" role="group" aria-label="Time window"></div>
+    <div id="chips" class="chips" role="group" aria-label="Filters"></div>
+  </section>
+
+  <p id="notice" class="notice" hidden></p>
+  <main id="list" class="list" aria-live="polite"></main>
+
+  <script src="app.js"></script>
+</body>
+</html>
