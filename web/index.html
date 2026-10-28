@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>CyberPulse</title>
-  <meta name="description" content="Personal IT, cybersecurity and South Africa news feed.">
+  <meta name="description" content="Your personal IT, cybersecurity and South Africa news feed.">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/png" href="icons/icon-192.png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -12,36 +12,54 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="CyberPulse">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#0b0f14">
-  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
-  <header class="top">
-    <div class="brand">
-      <span class="logo" aria-hidden="true"></span>
-      <h1>CyberPulse</h1>
-      <span id="critBadge" class="badge" hidden></span>
+  <div class="app">
+    <aside class="side">
+      <div class="brand"><img src="icons/icon-192.png" alt="" width="36" height="36"><span>CyberPulse</span></div>
+      <nav id="sideNav" class="nav" aria-label="Sections"></nav>
+      <p class="side-note">Saves and thoughts stay on this device. Use Back up in the right column to move them.</p>
+    </aside>
+
+    <div class="center">
+      <div id="head" class="head">
+        <div class="topbar">
+          <div class="mbrand">
+            <img class="logo" src="icons/icon-192.png" alt="" width="30" height="30">
+            <h1 id="title">Home</h1>
+            <span id="critBadge" class="badge" hidden></span>
+          </div>
+          <div class="tools">
+            <span id="status" class="status"></span>
+            <button id="theme" class="icon-btn" aria-label="Switch light or dark"></button>
+            <button id="refresh" class="icon-btn" aria-label="Refresh"></button>
+          </div>
+        </div>
+        <div class="controls">
+          <label class="search">
+            <span id="searchIcon" class="search-icon"></span>
+            <input id="q" type="search" placeholder="Search stories, sources and topics" autocomplete="off" enterkeyhint="search">
+          </label>
+          <div id="windows" class="segmented" role="group" aria-label="Time window"></div>
+          <div id="chips" class="chips" role="group" aria-label="Filters"></div>
+          <div id="tagbar" class="tagbar" hidden></div>
+        </div>
+      </div>
+
+      <button id="newPill" class="newpill" hidden></button>
+      <p id="notice" class="notice" hidden></p>
+      <main id="list" class="list" aria-live="polite"></main>
     </div>
-    <div class="right">
-      <span id="status" class="status"></span>
-      <button id="refresh" class="icon-btn" aria-label="Refresh" title="Refresh">&#8635;</button>
-    </div>
-  </header>
 
-  <nav id="tabs" class="tabs" role="tablist">
-    <button role="tab" data-tab="feed" class="active">Feed</button>
-    <button role="tab" data-tab="sa">South Africa</button>
-    <button role="tab" data-tab="saved">Saved</button>
-  </nav>
+    <aside id="rail" class="rail"></aside>
+  </div>
 
-  <section id="controls" class="controls">
-    <div id="windows" class="segmented" role="group" aria-label="Time window"></div>
-    <div id="chips" class="chips" role="group" aria-label="Filters"></div>
-  </section>
+  <nav id="bottomNav" class="bottom" aria-label="Sections"></nav>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <input type="file" id="importFile" accept="application/json" hidden>
 
-  <p id="notice" class="notice" hidden></p>
-  <main id="list" class="list" aria-live="polite"></main>
-
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>
