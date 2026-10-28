@@ -1,0 +1,25 @@
+CyberPulse web app: new design (4 steps, about 3 minutes)
+
+Your saved stories from the old version are kept.
+
+1. Unzip this file. Inside you will see a folder called "web".
+
+2. On github.com open your "cyberpulse" repository.
+   Click "Add file", then "Upload files".
+   Drag the whole "web" folder onto the page and wait for the upload bar to finish.
+   Click the green "Commit changes" button.
+   (If your browser won't accept a folder: first click the "web" folder in your repository,
+    then "Add file", "Upload files", and drag the files inside this "web" folder instead.)
+
+3. Click the "Actions" tab, then "Build feed" on the left, then "Run workflow" (twice).
+   Wait about a minute for the green tick. This step is what publishes the new design.
+
+4. Wait 2 minutes, then open your link again.
+   iPhone home-screen app: swipe it away from the app switcher and open it again
+   (do this twice if you still see the old look).
+   Mac: just reload the page.
+
+What's new: a feed you can scroll like X or Instagram, tap the speech bubble on any story to write
+your own thoughts, bookmark to save, share to send a story with your take, a My thoughts tab that
+collects everything you wrote, search, topic tags, a "new stories" button, and light and dark mode.
+Your saves and thoughts stay on the device you wrote them on. Use "Back up" to move them.
